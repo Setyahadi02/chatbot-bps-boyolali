@@ -10,11 +10,15 @@ main,
 .api-key-banner {
   width: 100%;
   padding: 24px;
-  max-width: 460px;
+  max-width: 95%;
   margin: 0 auto;
   border-radius: 20px;
 }
 
+.dark-mode main {
+  background-color: #000;
+  color: #fff;
+}
 .api-key-banner {
   background-color: #FFDDB7;
   font-weight: bold;
@@ -152,4 +156,3 @@ button:focus-visible {
 button:hover {
   opacity: 0.95;
 }
-
