@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SHD AI</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      color: #000000;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 6fr;
+      gap: 20px;
+      padding: 20px;
+      border-radius: 30px;
+      
+    }
+    
+    .dark-mode .container {
+      width: 95%;
+    }
+
+    .history-container {
+      border-right: 4px solid #ccc;
+      padding-right: 10px;
+    }
+
+    .history-container ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .history-container li {
+  cursor: pointer;
+  padding: 10px 0;
+  box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.2); /* Horizontal, Vertical, Blur, Spread, Color */
+}
+
+    .history-container li:hover {
+      text-decoration: underline;
+    }
+
+    .chat-container {
+      padding-left: 20px;
+    }
+
+    .image-picker, .prompt-box, .output-container {
+      margin-bottom: 20px;
+    }
+
+    .output-container {
+      margin-right: 100px;
+    }
+
+    .image-picker {
+      display: flex;
+      flex-direction: column;
+    }
+
+    #image-preview {
+      margin-top: 10px;
+    }
+
+    #copy-button {
+      display: none;
+    }
+
+    .dark-mode {
+      background-color: #000000;
+      color: #ffffff;
+    }
+
+    .dark-mode .container {
+      background-color: #333333;
+      color: #ffffff;
+    }
+
+    .dark-mode .history-container {
+      border-color: #555555;
+    }
+
+    .dark-mode .history-container li {
+      color: #ffffff;
+    }
+
+    .dark-mode .history-container li:hover {
+      text-decoration: underline;
+      color: #cccccc;
+    }
+
+    .dark-mode .chat-container {
+      color: #ffffff;
+    }
+
+    .dark-mode .prompt-box input {
+      background-color: #444444;
+      color: #ffffff;
+      border: 1px solid #666666;
+    }
+
+    #image-upload, .perintah {
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .dark-mode .prompt-box button {
+      background-color: #007bff;
+      color: #ffffff;
+    }
+
+    .dark-mode .prompt-box button:hover {
+      background-color: #0056b3;
+    }
+
+    .dark-mode-button {
+      position: absolute;
+      top: 30px;
+      right: 70px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .dark-mode-button:hover {
+      background-color: #0056b3;
+    }
+
+    #history-list {
+      margin: 15px 0;
+      padding: 10px 0;
+      border-bottom: #000000;
+    }
+
+    .judul {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 10px auto;
+      text-align: center;
+    }
+
+    .submit {
+      margin-left: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+      .history-container {
+        border-right: none;
+      /* border-bottom: 3px solid #ccc; */
+      padding-right: 10px;
+    }
+      .output-container {
+        margin-right: 0;
+      }
+      
+      .dark-mode .container{
+        width: 90%;
+      }
+      .submit {
+        width: 15%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .dark-mode-button {
+        top: 10px;
+        right: 10px;
+      }
+      .dark-mode .container{
+        margin-left: -10px;
+      }
+      .judul {
+        font-size: 20px;
+      }
+      .perintah{
+        margin-left: -23px;
+        
+      }
+      #image-upload{
+        margin-left: -25px;
+      }
+      .submit {
+        width: 20%;
+        transform: translateX(-20px);
+      }
+      .output{
+        margin-left: -20px;
+      }
+      
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1 class="judul">SHD.AI</h1>
+    <button class="dark-mode-button" id="dark-mode-toggle">☀</button>
+    <div class="container">
+      <div class="history-container">
+        <h2 class="history-judul">History</h2>
+        <ul id="history-list"></ul>
+      </div>
+      <div class="chat-container">
+        <form>
+          <div class="image-picker">
+            <label>
+              Upload File:
+              <input type="file" id="image-upload">
+            </label>
+            <div id="image-preview"></div>
+          </div>
+          <div class="prompt-box">
+            <label>
+              <input name="prompt" class="perintah" placeholder="Masukkan Perintah anda" type="text">
+            </label>
+            <button type="submit" class="submit">▶</button>
+          </div>
+        </form>
+        <div class="output-container">
+          <p class="output"></p>
+          <button id="copy-button">🧾</button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
