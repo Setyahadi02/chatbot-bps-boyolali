@@ -18,15 +18,21 @@
       gap: 20px;
       padding: 20px;
       border-radius: 30px;
-      
     }
-    
+
     .dark-mode .container {
-      width: 95%;
+      width: 100%;
+      margin-left: -20px;
     }
 
     .history-container {
       border-right: 4px solid #ccc;
+      padding-right: 10px;
+      margin-left: -30px;
+    }
+
+    .dark-mode .history-container{
+      margin-left: -10px;
       padding-right: 10px;
     }
 
@@ -36,10 +42,10 @@
     }
 
     .history-container li {
-  cursor: pointer;
-  padding: 10px 0;
-  box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.2); /* Horizontal, Vertical, Blur, Spread, Color */
-}
+      cursor: pointer;
+      padding: 10px 0;
+      box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.2); /* Horizontal, Vertical, Blur, Spread, Color */
+    }
 
     .history-container li:hover {
       text-decoration: underline;
@@ -55,6 +61,7 @@
 
     .output-container {
       margin-right: 100px;
+      word-wrap: break-word;
     }
 
     .image-picker {
@@ -101,9 +108,6 @@
       background-color: #444444;
       color: #ffffff;
       border: 1px solid #666666;
-    }
-
-    #image-upload, .perintah {
       width: 100%;
       box-sizing: border-box;
     }
@@ -140,15 +144,25 @@
     }
 
     .judul {
-      font-size: 24px;
+      font-size: 25px;
       font-weight: bold;
-      margin-top: -30px;
-      margin-left: -20px;
+      margin: 10px auto;
+      transform: translateY(-25px);
       text-align: center;
     }
 
     .submit {
       margin-left: 10px;
+    }
+
+    .chat-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .option-button {
+      margin: 10px;
     }
 
     @media (max-width: 768px) {
@@ -157,18 +171,24 @@
       }
       .history-container {
         border-right: none;
-      /* border-bottom: 3px solid #ccc; */
-      padding-right: 10px;
-    }
+        padding-right: 10px;
+      }
       .output-container {
         margin-right: 0;
       }
-      
-      .dark-mode .container{
-        width: 90%;
+      .dark-mode .container {
+        width: 100%;
       }
       .submit {
         width: 15%;
+      }
+      .chat-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .option-button {
+        margin: 10px;
       }
     }
 
@@ -177,27 +197,63 @@
         top: 10px;
         right: 10px;
       }
-      .dark-mode .container{
-        margin-left: -10px;
+      .dark-mode .container {
+        width: 95%;
+      }
+      .dark-mode .chat-container{
+        width: 95%;
+        transform: translateX(20px);
+      }
+      .output-container{
+        transform: translateX(30px);
+      }
+      .history-container li {
+        margin-bottom: 12px;
       }
       .judul {
         font-size: 20px;
       }
-      .perintah{
-        margin-left: -23px;
-        
+      .perintah {
+        margin-right: 10px;
       }
-      #image-upload{
-        margin-left: -25px;
+      #upload-image{
+        margin-left: -20px;
       }
       .submit {
         width: 20%;
         transform: translateX(-20px);
       }
-      .output{
+      .output {
         margin-left: -20px;
       }
-      
+      .chat-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-left: -50px;
+      }
+      .button-container {
+        margin-left: -20px;
+      }
+      .option-button {
+        margin: 10px;
+      }
+      .judul{
+        margin-top: -10px;
+        font-size: 24px;
+        font-weight: bold;
+      }
+    }
+
+    /* Penyesuaian untuk tampilan desktop */
+    @media (min-width: 769px) {
+      .history-container.hidden + .chat-container {
+        grid-column: span 2;
+      }
+      .history-container.hidden ~ .chat-container .image-picker,
+      .history-container.hidden ~ .chat-container .prompt-box {
+        grid-column: span 2;
+      }
     }
   </style>
 </head>
@@ -206,11 +262,11 @@
     <h1 class="judul">SHD.AI</h1>
     <button class="dark-mode-button" id="dark-mode-toggle">☀</button>
     <div class="container">
-      <div class="history-container">
-        <h2 class="history-judul">History</h2>
+      <div class="history-container hidden">
+        <h2 class="history-judul" style="display: none;">History</h2>
         <ul id="history-list"></ul>
       </div>
-      <div class="chat-container">
+      <div class="chat-container expanded">
         <form>
           <div class="image-picker">
             <label>

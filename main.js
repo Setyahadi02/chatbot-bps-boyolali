@@ -13,6 +13,9 @@ let imagePreview = document.getElementById('image-preview');
 let copyButton = document.getElementById('copy-button');
 let historyList = document.getElementById('history-list');
 let darkModeToggle = document.getElementById('dark-mode-toggle');
+let historyJudul = document.querySelector('.history-judul');
+let historyContainer = document.querySelector('.history-container');
+let chatContainer = document.querySelector('.chat-container');
 
 let history = [];
 let historyIndex = 0;
@@ -58,11 +61,12 @@ form.onsubmit = async (ev) => {
       }
     }
 
+
     let contents = [
       {
         role: 'user',
         parts: [
-          imageBase64 ? { inline_data: { mime_type: file.type, data: imageBase64, } } : null,
+          imageBase64 ? { inline_data: { mime_type: file.type, data: imageBase64 } } : null,
           fileContent ? { text: fileContent } : null,
           { text: promptInput.value }
         ].filter(Boolean)
@@ -80,7 +84,8 @@ form.onsubmit = async (ev) => {
       ],
     });
 
-    // Clear the input fields after submission
+
+   // Clear the input fields after submission
     let userPrompt = promptInput.value;
     promptInput.value = '';
     imageUpload.value = '';
@@ -95,8 +100,7 @@ form.onsubmit = async (ev) => {
       output.innerHTML = md.render(buffer.join(''));
     }
 
-    // Show the copy button after output is generated
-    copyButton.style.display = 'block';
+ copyButton.style.display = 'block';
 
     // Save history
     let historyItem = {
@@ -108,22 +112,12 @@ form.onsubmit = async (ev) => {
     updateHistoryList();
 
   } catch (e) {
-    output.innerHTML += '<hr>' + e;
+    console.error(e);
+    output.innerHTML = 'Error generating text: ' + e.message;
   }
 };
 
-function updateHistoryList() {
-  historyList.innerHTML = '';
-  history.forEach(item => {
-    let listItem = document.createElement('li');
-    listItem.textContent = item.prompt;
-    listItem.onclick = () => {
-      output.innerHTML = new MarkdownIt().render(item.output);
-      copyButton.style.display = 'block';
-    };
-    historyList.appendChild(listItem);
-  });
-}
+
 
 copyButton.onclick = () => {
   let textToCopy = output.innerText;
@@ -136,8 +130,38 @@ copyButton.onclick = () => {
     });
 };
 
+
+
+function updateHistoryList() {
+  historyList.innerHTML = '';
+  history.forEach(item => {
+    let listItem = document.createElement('li');
+    listItem.textContent = item.prompt;
+    listItem.onclick = () => {
+      output.innerHTML = new MarkdownIt().render(item.output);
+      copyButton.style.display = 'block';
+    };
+    historyList.appendChild(listItem);
+  });
+
+  historyContainer.style.display = history.length > 0 ? 'block' : 'none';
+  historyJudul.style.display = history.length > 0 ? 'block' : 'none';
+
+  if (history.length === 0) {
+    historyContainer.classList.add('hidden');
+    chatContainer.classList.add('expanded');
+  } else {
+    historyContainer.classList.remove('hidden');
+    chatContainer.classList.remove('expanded');
+  }
+}
+updateHistoryList();
+
+let darkMode = false;
 darkModeToggle.onclick = () => {
+  darkMode = !darkMode;
   document.body.classList.toggle('dark-mode');
+  darkModeToggle.textContent = darkMode ? '🌙' : '☀';
 };
 
-maybeShowApiKeyBanner(API_KEY);
+maybeShowApiKeyBanner();
