@@ -31,7 +31,7 @@
       margin-left: -30px;
     }
 
-    .dark-mode .history-container{
+    .dark-mode .history-container {
       margin-left: -10px;
       padding-right: 10px;
     }
@@ -44,7 +44,7 @@
     .history-container li {
       cursor: pointer;
       padding: 10px 0;
-      box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.2); /* Horizontal, Vertical, Blur, Spread, Color */
+      box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.2);
     }
 
     .history-container li:hover {
@@ -143,13 +143,12 @@
       border-bottom: #000000;
     }
 
-    .judul {
-      font-size: 25px;
-      font-weight: bold;
-      margin-left: -30px;
-      transform: translateY(-25px);
-      text-align: center;
-    }
+    .dropdown {
+        font-size: 20px;
+        transform: translateY(-35px);
+        font-weight: bold;
+        margin-left: -30px;
+      }
 
     .submit {
       margin-left: 10px;
@@ -163,6 +162,44 @@
 
     .option-button {
       margin: 10px;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    .dropbtn{
+      background-color: white;
+      color: black;
+    }
+
+    .dropdown:hover .dropbtn {
+      background-color: black;
+      color: white;
     }
 
     @media (max-width: 768px) {
@@ -197,48 +234,42 @@
         top: 10px;
         right: 10px;
       }
-      body{
+      body {
         width: 80%;
         height: 400px;
       }
-      .container{
+      .container {
         width: 95%;
         height: 300px;
-
       }
-      #image-upload{
+      #image-upload {
         width: 80%;
       }
-     
       .dark-mode .container {
         width: 95%;
         background-color: #000000;
-
       }
-      .dark-mode .chat-container{
+      .dark-mode .chat-container {
         width: 120%;
         margin-left: -40px;
         transform: translateY(300px);
-
       }
-      .output-container{
+      .output-container {
         transform: translateX(20px);
       }
       .history-container li {
         margin-bottom: 12px;
       }
-      
       .perintah {
         margin-right: 10px;
       }
-      .dark-mode .perintah{
+      .dark-mode .perintah {
         width: 100%;
       }
-      .dark-mode .submit{
+      .dark-mode .submit {
         transform: translateX(-5px);
       }
-    
-      #upload-image{
+      #upload-image {
         margin-left: -20px;
       }
       .submit {
@@ -248,7 +279,7 @@
       .output {
         margin-left: -30px;
       }
-      .dark-mode .output{
+      .dark-mode .output {
         margin-left: -30px;
       }
       .chat-container {
@@ -264,12 +295,11 @@
       .option-button {
         margin: 10px;
       }
-      .judul{
-        margin-top: -10px;
-        font-size: 24px;
+      .dropdown {
+        font-size: 20px;
+        transform: translateY(-35px);
         font-weight: bold;
-        margin-left: -50px;
-
+        margin-left: -30px;
       }
     }
 
@@ -287,7 +317,13 @@
 </head>
 <body>
   <main>
-    <h1 class="judul">SHD.AI</h1>
+    <div class="dropdown">
+      <button class="dropbtn">SHD.AI ▼</button>
+      <div class="dropdown-content">
+        <a href="#"> Version Pro </a>
+        <a href="#">Version Now</a>
+      </div>
+    </div>
     <button class="dark-mode-button" id="dark-mode-toggle">☀</button>
     <div class="container">
       <div class="history-container hidden">
