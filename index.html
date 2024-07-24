@@ -314,6 +314,105 @@
         grid-column: span 2;
       }
     }
+
+    /* Dialog box styling */
+    #dialog {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #1c1c1e;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+      border-radius: 8px;
+      width: 1200px;
+      z-index: 1000;
+    }
+
+    #dialog .plans {
+      display: flex;
+      gap: 20px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    #dialog .plan {
+      background-color: #2c2c2e;
+      border: 1px solid #3a3a3c;
+      border-radius: 8px;
+      padding: 20px;
+      width: 300px;
+      margin-bottom: 20px;
+    }
+
+    #dialog .plan h3 {
+      margin-top: 0;
+    }
+
+    #dialog .plan button {
+      background-color: #00aaff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    #dialog .plan button:hover {
+      background-color: #0088cc;
+    }
+
+    #dialog .free-plan {
+      background-color: #3a3a3c;
+      border: none;
+    }
+
+    #dialog .free-plan button {
+      background-color: #444;
+      cursor: default;
+    }
+
+    #dialog .footer {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    #dialog .footer a {
+      color: #00aaff;
+      text-decoration: none;
+    }
+
+    #dialog .footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Media Queries untuk Responsivitas */
+    @media (max-width: 768px) {
+      #dialog .plans {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      #dialog .plan {
+        width: 90%;
+        max-width: 400px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      #dialog .plan {
+        width: 100%;
+      }
+
+      #dialog .plans {
+        margin-top: 100px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -321,8 +420,8 @@
     <div class="dropdown">
       <button class="dropbtn">SHD.AI ▼</button>
       <div class="dropdown-content">
-        <a href="/version_pro.html"> Version Pro </a>
-        <a href="/version_pro.html">Version Plus</a>
+        <a href="#" id="version-proo">Version Pro</a>
+        <a href="#" id="version-pluss">Version Plus</a>
       </div>
     </div>
     <button class="dark-mode-button" id="dark-mode-toggle">☀</button>
@@ -354,6 +453,59 @@
       </div>
     </div>
   </main>
+
+  <!-- Dialog box -->
+  <div id="dialog">
+    <h1>Tingkatkan Rencana Anda</h1>
+    <div class="plans">
+      <div class="plan free-plan">
+        <h3>Gratis</h3>
+        <p>Rp 0 / bulan</p>
+        <button>Fitur</button>
+        <ul>
+          <li>Bantuan menulis, pemecahan masalah, dan lainnya</li>
+          <li>Akses terbatas</li>
+          <li>Informasi tidak lengkap</li>
+          <li>Akses terbatas ke analisis data lanjutan, unggahan file, penglihatan, penelusuran web, dan GPT kustom</li>
+        </ul>
+      </div>
+      <div class="plan">
+        <h3>Plus</h3>
+        <p>Rp 300.000 / bulan</p>
+        <button onclick="window.location.href='pembayaran.html'">Tingkatkan ke Plus</button>
+        <ul>
+          <li>Akses awal ke fitur baru</li>
+          <li>Hingga 5x lebih banyak pesan untuk GPT-4.0</li>
+          <li>Akses ke analisis data lanjutan, unggahan file, penglihatan, dan penelusuran web</li>
+          <li>Generasi gambar DALL-E</li>
+          <li>Membuat dan menggunakan GPT kustom</li>
+        </ul>
+      </div>
+      <div class="plan">
+        <h3>Pro</h3>
+        <p>Rp 375.000 per orang / bulan</p>
+        <button onclick="window.location.href='pembayaran.html'">Tingkatkan ke Pro</button>
+        <ul>
+          <li>Semua dalam Plus, dan:</li>
+          <li>Membuat dan berbagi Kecerdasan dengan tim Anda</li>
+          <li>Konsol admin untuk manajemen tim</li>
+          <li>Data tim tidak digunakan untuk pelatihan secara default</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
   <script type="module" src="/main.js"></script>
+  <script>
+    document.getElementById('version-pro').addEventListener('click', function(event) {
+      event.preventDefault();
+      document.getElementById('dialog').style.display = 'block';
+    });
+
+    document.getElementById('version-plus').addEventListener('click', function(event) {
+      event.preventDefault();
+      document.getElementById('dialog').style.display = 'block';
+    });
+  </script>
 </body>
 </html>

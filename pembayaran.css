@@ -9,7 +9,7 @@ body {
     padding: 0;
 }
 
-.container {
+.container-bayar {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -102,7 +102,7 @@ h1 {
 }
 
 @media (max-width: 768px) {
-    .container {
+    .container-bayar {
         flex-direction: column;
         padding: 10px;
     }
