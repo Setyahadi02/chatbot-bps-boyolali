@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Form</title>
+    <link rel="stylesheet" href="pembayaran.css">
+</head>
+<body>
+    <main class="container">
+        <div class="subscription-details">
+            <h1>Subscribe to  Plus Subscription</h1>
+            <p class="price">RP 320.000,00 <span>/ bulan </span></p>
+            <ul class="details-list">
+                <li>version Plus Subscription<span>RP 320.000,00</span></li>
+                <li>Subtotal<span>RP 320.000,00</span></li>
+                <li>Tax<span>-</span></li>
+                <li>Total due today<span>RP 320.000,00</span></li>
+            </ul>
+        </div>
+        <div class="payment-form">
+            <form>
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Email" required>
+                </div>
+                <div class="input-group">
+                    <label for="card-number">Card information</label>
+                    <input type="text" id="card-number" placeholder="1234 1234 1234 1234" required>
+                    <div class="card-details">
+                        <input type="text" id="expiry-date" placeholder="MM / YY" required>
+                        <input type="text" id="cvc" placeholder="CVC" required>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="cardholder-name">Cardholder name</label>
+                    <input type="text" id="cardholder-name" placeholder="Full name on card" required>
+                </div>
+                <div class="input-group">
+                    <label for="billing-address">Billing address</label>
+                    <select id="country" required>
+                        <option value="Indonesia">Indonesia</option>
+                        <!-- Add more countries as needed -->
+                    </select>
+                    <input type="text" id="address-line1" placeholder="Address line 1" required>
+                    <input type="text" id="address-line2" placeholder="Address line 2">
+                    <input type="text" id="city" placeholder="City" required>
+                    <input type="text" id="province" placeholder="Province" required>
+                    <input type="text" id="postal-code" placeholder="Postal code" required>
+                </div>
+                <button type="submit" class="submit-button">Langganan</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>
